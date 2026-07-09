@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}My Profile — Career Compass AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="profile-card">
+
+                <!-- Header -->
+                <div class="profile-header">
+                    <i class="bi bi-person-badge display-4 text-primary"></i>
+                    <h2 class="fw-bold mt-2">Career Profile</h2>
+                    <p class="text-muted">Tell us about yourself so Career Compass AI can guide you better</p>
+                </div>
+
+                <form method="POST" action="{{ url_for('profile') }}">
+
+                    <!-- Education Level -->
+                    <div class="mb-3">
+                        <label for="education_level" class="form-label">Education Level <span class="text-danger">*</span></label>
+                        <select class="form-select" id="education_level" name="education_level" required>
+                            <option value="" disabled {% if not profile %}selected{% endif %}>Select your level</option>
+                            <option value="School" {% if profile and profile.education_level == 'School' %}selected{% endif %}>School (10th / 12th)</option>
+                            <option value="Diploma" {% if profile and profile.education_level == 'Diploma' %}selected{% endif %}>Diploma</option>
+                            <option value="Undergraduate" {% if profile and profile.education_level == 'Undergraduate' %}selected{% endif %}>Undergraduate</option>
+                            <option value="Postgraduate" {% if profile and profile.education_level == 'Postgraduate' %}selected{% endif %}>Postgraduate</option>
+                        </select>
+                    </div>
+
+                    <!-- Stream / Branch -->
+                    <div class="mb-3">
+                        <label for="stream" class="form-label">Stream / Branch <span class="text-danger">*</span></label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="stream"
+                            name="stream"
+                            placeholder="e.g. Information Technology, Commerce, Biology"
+                            value="{{ profile.stream if profile else '' }}"
+                            required
+                        >
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="mb-3">
+                        <label for="skills" class="form-label">Your Skills</label>
+                        <textarea
+                            class="form-control"
+                            id="skills"
+                            name="skills"
+                            rows="2"
+                            placeholder="e.g. Python, Java, Communication, Problem Solving (comma separated)"
+                        >{{ profile.skills if profile else '' }}</textarea>
+                        <small class="text-muted">Separate skills with commas</small>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="mb-3">
+                        <label for="interests" class="form-label">Your Interests</label>
+                        <textarea
+                            class="form-control"
+                            id="interests"
+                            name="interests"
+                            rows="2"
+                            placeholder="e.g. Web Development, AI, Designing, Teaching"
+                        >{{ profile.interests if profile else '' }}</textarea>
+                    </div>
+
+                    <!-- Career Goal -->
+                    <div class="mb-4">
+                        <label for="career_goal" class="form-label">Career Goal (Optional)</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="career_goal"
+                            name="career_goal"
+                            placeholder="e.g. Software Engineer, Data Scientist, Govt. Job"
+                            value="{{ profile.career_goal if profile else '' }}"
+                        >
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-save me-2"></i>Save Profile
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

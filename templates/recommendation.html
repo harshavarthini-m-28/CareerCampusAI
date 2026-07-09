@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}Your Career Roadmap — Career Compass AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/recommendation.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- ── Page Header ── -->
+    <div class="rec-header text-center mb-5">
+        <div class="rec-badge">
+            <i class="bi bi-stars"></i>
+        </div>
+        <h1 class="fw-bold mt-3">Your Personalized Career Roadmap</h1>
+        <p class="text-muted">
+            Generated for <strong>{{ user_name }}</strong>
+            {% if generated_at %}
+            &nbsp;·&nbsp;
+            <span class="text-muted small">
+                {{ generated_at.strftime('%d %b %Y, %I:%M %p') }}
+            </span>
+            {% endif %}
+        </p>
+
+        <!-- Profile Summary Pills -->
+        <div class="profile-pills mt-3">
+            {% if profile %}
+            <span class="badge bg-primary-subtle text-primary me-2">
+                <i class="bi bi-mortarboard"></i>
+                {{ profile.education_level }}
+            </span>
+            <span class="badge bg-success-subtle text-success me-2">
+                <i class="bi bi-book"></i> {{ profile.stream }}
+            </span>
+            {% if profile.career_goal %}
+            <span class="badge bg-warning-subtle text-warning">
+                <i class="bi bi-bullseye"></i> {{ profile.career_goal }}
+            </span>
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ── Motivational Message ── -->
+    {% if ai_data.motivational_message %}
+    <div class="motivational-card mb-5">
+        <div class="d-flex align-items-center gap-3">
+            <i class="bi bi-quote display-5 text-primary opacity-50"></i>
+            <p class="mb-0 fs-5 fst-italic">
+                {{ ai_data.motivational_message }}
+            </p>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- ── Section 1: Career Paths ── -->
+    <div class="section-title mb-4">
+        <i class="bi bi-signpost-2 text-primary"></i>
+        <h2>Recommended Career Paths</h2>
+    </div>
+
+    <div class="row g-4 mb-5">
+        {% for path in ai_data.career_paths %}
+        <div class="col-md-4">
+            <div class="career-card h-100">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <span class="career-number">{{ loop.index }}</span>
+                    <span class="badge
+                        {% if path.growth == 'High' %}bg-success
+                        {% elif path.growth == 'Medium' %}bg-warning text-dark
+                        {% else %}bg-secondary{% endif %}">
+                        {{ path.growth }} Growth
+                    </span>
+                </div>
+                <h5 class="fw-bold text-primary">{{ path.title }}</h5>
+                <p class="text-muted small">{{ path.description }}</p>
+                <div class="career-highlight">
+                    <i class="bi bi-person-check text-success me-1"></i>
+                    <small>{{ path.why_suitable }}</small>
+                </div>
+                <div class="salary-tag mt-3">
+                    <i class="bi bi-currency-rupee"></i>
+                    {{ path.salary_range }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── Section 2: Skills ── -->
+    <div class="section-title mb-4">
+        <i class="bi bi-tools text-warning"></i>
+        <h2>Skills You Need to Build</h2>
+    </div>
+    <div class="skills-grid mb-5">
+        {% for skill in ai_data.required_skills %}
+        <div class="skill-item">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <strong>{{ skill.skill }}</strong>
+                <span class="badge
+                    {% if skill.priority == 'Must Have' %}bg-danger
+                    {% else %}bg-info{% endif %}">
+                    {{ skill.priority }}
+                </span>
+            </div>
+            <p class="text-muted small mb-0">
+                <i class="bi bi-lightbulb me-1 text-warning"></i>
+                {{ skill.how_to_learn }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── Section 3: Courses ── -->
+    <div class="section-title mb-4">
+        <i class="bi bi-play-circle text-success"></i>
+        <h2>Recommended Courses & Certifications</h2>
+    </div>
+    <div class="row g-3 mb-5">
+        {% for course in ai_data.suggested_courses %}
+        <div class="col-md-6">
+            <div class="course-card d-flex align-items-start gap-3 h-100">
+                <div class="course-icon">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                </div>
+                <div>
+                    <h6 class="fw-bold mb-2">{{ course.course_name }}</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge bg-light text-dark border">
+                            <i class="bi bi-broadcast me-1"></i>
+                            {{ course.platform }}
+                        </span>
+                        <span class="badge bg-light text-dark border">
+                            <i class="bi bi-clock me-1"></i>
+                            {{ course.duration }}
+                        </span>
+                        <span class="badge
+                            {% if course.free_or_paid == 'Free' %}
+                                bg-success bg-opacity-10 text-success
+                            {% else %}
+                                bg-primary bg-opacity-10 text-primary
+                            {% endif %}">
+                            {{ course.free_or_paid }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── Section 4: Next Steps ── -->
+    <div class="section-title mb-4">
+        <i class="bi bi-arrow-right-circle text-info"></i>
+        <h2>Your Next 5 Action Steps</h2>
+    </div>
+    <div class="steps-list mb-5">
+        {% for step in ai_data.next_steps %}
+        <div class="step-item">
+            <div class="step-number">{{ loop.index }}</div>
+            <p class="mb-0">{{ step }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ── Action Buttons ── -->
+    <div class="text-center mt-4 d-flex flex-wrap justify-content-center gap-3">
+
+        {% if rec_id %}
+        <!-- Download PDF button — links to the PDF route with this rec's ID -->
+        <a href="{{ url_for('download_pdf', rec_id=rec_id) }}"
+           class="btn btn-success btn-lg">
+            <i class="bi bi-file-earmark-pdf me-2"></i>Download PDF
+        </a>
+        {% endif %}
+
+        <a href="{{ url_for('recommend') }}" class="btn btn-primary btn-lg">
+            <i class="bi bi-arrow-clockwise me-2"></i>Regenerate Advice
+        </a>
+
+        <a href="{{ url_for('history') }}" class="btn btn-outline-secondary btn-lg">
+            <i class="bi bi-clock-history me-2"></i>View History
+        </a>
+
+        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-primary btn-lg">
+            <i class="bi bi-house me-2"></i>Dashboard
+        </a>
+
+    </div>
+
+</div>
+{% endblock %}

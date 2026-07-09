@@ -1,0 +1,116 @@
+/* recommendation.css */
+
+/* ── Page Header ── */
+.rec-header { padding: 1rem 0; }
+
+.rec-badge {
+    width: 80px; height: 80px;
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(13,110,253,0.3);
+}
+.rec-badge i { font-size: 2.2rem; color: white; }
+
+/* ── Motivational Card ── */
+.motivational-card {
+    background: linear-gradient(135deg, #f0f4ff, #e8f5e9);
+    border-left: 5px solid #0d6efd;
+    border-radius: 12px;
+    padding: 1.5rem 2rem;
+}
+
+/* ── Section Titles ── */
+.section-title {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 1.5rem;
+}
+.section-title h2 {
+    font-size: 1.4rem; font-weight: 700;
+    color: #1a1a2e; margin-bottom: 0;
+}
+.section-title i { font-size: 1.6rem; }
+
+/* ── Career Cards ── */
+.career-card {
+    background: white;
+    border-radius: 14px;
+    padding: 1.5rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.career-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+.career-number {
+    width: 32px; height: 32px;
+    background: #0d6efd;
+    color: white; border-radius: 50%;
+    display: flex; align-items: center;
+    justify-content: center; font-weight: 700;
+    font-size: 0.9rem;
+}
+.career-highlight {
+    background: #f8f9fa; border-radius: 8px;
+    padding: 0.6rem 0.8rem; margin-top: 0.8rem;
+}
+.salary-tag {
+    background: #e8f5e9; color: #2e7d32;
+    border-radius: 6px; padding: 0.4rem 0.7rem;
+    font-size: 0.85rem; font-weight: 600;
+    display: inline-block;
+}
+
+/* ── Skills Grid ── */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+.skill-item {
+    background: white; border-radius: 10px;
+    padding: 1rem 1.2rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+
+/* ── Course Cards ── */
+.course-card {
+    background: white; border-radius: 12px;
+    padding: 1.2rem;
+    border: 1px solid #e9ecef;
+    height: 100%;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.course-icon {
+    width: 44px; height: 44px; min-width: 44px;
+    background: linear-gradient(135deg, #0d6efd20, #6610f220);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; color: #0d6efd;
+}
+
+/* ── Next Steps ── */
+.steps-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+.step-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    background: white; border-radius: 10px;
+    padding: 1rem 1.2rem;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.step-number {
+    width: 32px; height: 32px; min-width: 32px;
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white; border-radius: 50%;
+    display: flex; align-items: center;
+    justify-content: center; font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* ── Profile Pills ── */
+.profile-pills .badge { font-size: 0.85rem; padding: 0.45rem 0.8rem; }

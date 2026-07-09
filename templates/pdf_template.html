@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+    /* ── PDF-specific styles (inline for WeasyPrint compatibility) ── */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 13px; color: #2d2d2d;
+        line-height: 1.6; padding: 30px 40px;
+    }
+
+    /* ── Header ── */
+    .pdf-header {
+        text-align: center; padding: 20px 0 15px;
+        border-bottom: 3px solid #0d6efd; margin-bottom: 25px;
+    }
+    .pdf-header h1 {
+        font-size: 22px; color: #0d6efd; font-weight: bold;
+    }
+    .pdf-header .subtitle {
+        font-size: 13px; color: #666; margin-top: 4px;
+    }
+    .pdf-header .meta {
+        font-size: 11px; color: #999; margin-top: 6px;
+    }
+
+    /* ── Profile Summary Box ── */
+    .profile-box {
+        background: #f0f4ff; border-radius: 8px;
+        padding: 12px 16px; margin-bottom: 22px;
+        border-left: 4px solid #0d6efd;
+    }
+    .profile-box table { width: 100%; }
+    .profile-box td { padding: 3px 10px; font-size: 12px; }
+    .profile-box td:first-child {
+        font-weight: bold; color: #555; width: 35%;
+    }
+
+    /* ── Section Titles ── */
+    .section-title {
+        font-size: 15px; font-weight: bold;
+        color: #0d6efd; margin: 22px 0 12px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    /* ── Career Path Cards ── */
+    .career-card {
+        border: 1px solid #dee2e6; border-radius: 8px;
+        padding: 12px 14px; margin-bottom: 12px;
+        background: #fff;
+        page-break-inside: avoid;
+    }
+    .career-card .title {
+        font-weight: bold; font-size: 14px;
+        color: #0d6efd; margin-bottom: 4px;
+    }
+    .career-card .desc { color: #555; margin-bottom: 6px; }
+    .career-card .why {
+        background: #f8f9fa; border-radius: 4px;
+        padding: 5px 8px; font-size: 11px; color: #444;
+        margin-bottom: 6px;
+    }
+    .career-card .salary {
+        display: inline-block;
+        background: #e8f5e9; color: #2e7d32;
+        border-radius: 4px; padding: 2px 8px;
+        font-size: 11px; font-weight: bold;
+    }
+    .growth-badge {
+        float: right; font-size: 10px;
+        padding: 2px 8px; border-radius: 10px;
+        color: white;
+    }
+    .growth-high   { background: #28a745; }
+    .growth-medium { background: #ffc107; color: #333; }
+    .growth-low    { background: #6c757d; }
+
+    /* ── Skills Table ── */
+    .skills-table { width: 100%; border-collapse: collapse; }
+    .skills-table th {
+        background: #0d6efd; color: white;
+        padding: 7px 10px; text-align: left;
+        font-size: 11px;
+    }
+    .skills-table td {
+        padding: 7px 10px; border-bottom: 1px solid #f0f0f0;
+        font-size: 11px; vertical-align: top;
+    }
+    .skills-table tr:nth-child(even) { background: #f8f9fa; }
+    .must-have  { color: #dc3545; font-weight: bold; }
+    .good-have  { color: #0d6efd; font-weight: bold; }
+
+    /* ── Courses Table ── */
+    .courses-table { width: 100%; border-collapse: collapse; }
+    .courses-table th {
+        background: #198754; color: white;
+        padding: 7px 10px; text-align: left; font-size: 11px;
+    }
+    .courses-table td {
+        padding: 7px 10px; border-bottom: 1px solid #f0f0f0;
+        font-size: 11px;
+    }
+    .courses-table tr:nth-child(even) { background: #f8f9fa; }
+    .free-badge  { color: #198754; font-weight: bold; }
+    .paid-badge  { color: #0d6efd; font-weight: bold; }
+
+    /* ── Next Steps ── */
+    .steps-list { padding-left: 0; list-style: none; }
+    .step-item {
+        display: flex; align-items: flex-start; gap: 10px;
+        padding: 8px 10px; margin-bottom: 8px;
+        background: #fff; border: 1px solid #dee2e6;
+        border-radius: 6px;
+        page-break-inside: avoid;
+    }
+    .step-num {
+        min-width: 26px; height: 26px;
+        background: #0d6efd; color: white;
+        border-radius: 50%; display: flex;
+        align-items: center; justify-content: center;
+        font-weight: bold; font-size: 11px;
+    }
+
+    /* ── Motivational Message ── */
+    .motivational {
+        background: #f0f4ff;
+        border-left: 4px solid #0d6efd;
+        border-radius: 0 8px 8px 0;
+        padding: 12px 16px; margin: 20px 0;
+        font-style: italic; font-size: 13px; color: #333;
+    }
+
+    /* ── Footer ── */
+    .pdf-footer {
+        text-align: center; margin-top: 30px;
+        padding-top: 12px;
+        border-top: 1px solid #dee2e6;
+        font-size: 10px; color: #aaa;
+    }
+
+    /* ── Page break hint ── */
+    .page-break { page-break-before: always; }
+</style>
+</head>
+<body>
+
+<!-- ── PDF Header ── -->
+<div class="pdf-header">
+    <h1>🧭 Career Compass AI</h1>
+    <div class="subtitle">
+        Personalized Career Roadmap — SIH25094
+    </div>
+    <div class="meta">
+        Prepared for: <strong>{{ user_name }}</strong>
+        {% if generated_at %}
+        &nbsp;·&nbsp; {{ generated_at.strftime('%d %B %Y, %I:%M %p') }}
+        {% endif %}
+    </div>
+</div>
+
+<!-- ── Profile Summary ── -->
+{% if profile %}
+<div class="profile-box">
+    <table>
+        <tr>
+            <td>Education Level</td>
+            <td>{{ profile.education_level }}</td>
+            <td>Stream / Branch</td>
+            <td>{{ profile.stream }}</td>
+        </tr>
+        <tr>
+            <td>Skills</td>
+            <td>{{ profile.skills or '—' }}</td>
+            <td>Career Goal</td>
+            <td>{{ profile.career_goal or '—' }}</td>
+        </tr>
+        <tr>
+            <td>Interests</td>
+            <td colspan="3">{{ profile.interests or '—' }}</td>
+        </tr>
+    </table>
+</div>
+{% endif %}
+
+<!-- ── Motivational Message ── -->
+{% if ai_data.motivational_message %}
+<div class="motivational">
+    "{{ ai_data.motivational_message }}"
+</div>
+{% endif %}
+
+<!-- ── Career Paths ── -->
+<div class="section-title">🎯 Recommended Career Paths</div>
+
+{% for path in ai_data.career_paths %}
+<div class="career-card">
+    <span class="growth-badge
+        {% if path.growth == 'High' %}growth-high
+        {% elif path.growth == 'Medium' %}growth-medium
+        {% else %}growth-low{% endif %}">
+        {{ path.growth }} Growth
+    </span>
+    <div class="title">{{ loop.index }}. {{ path.title }}</div>
+    <div class="desc">{{ path.description }}</div>
+    <div class="why">✅ Why it suits you: {{ path.why_suitable }}</div>
+    <span class="salary">₹ {{ path.salary_range }}</span>
+</div>
+{% endfor %}
+
+<!-- ── Skills ── -->
+<div class="section-title">🛠 Skills You Need to Build</div>
+
+<table class="skills-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Skill</th>
+            <th>Priority</th>
+            <th>How to Learn</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for skill in ai_data.required_skills %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><strong>{{ skill.skill }}</strong></td>
+            <td>
+                <span class="{% if skill.priority == 'Must Have' %}must-have{% else %}good-have{% endif %}">
+                    {{ skill.priority }}
+                </span>
+            </td>
+            <td>{{ skill.how_to_learn }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- ── Courses ── -->
+<div class="section-title">📚 Recommended Courses & Certifications</div>
+
+<table class="courses-table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Course / Certification</th>
+            <th>Platform</th>
+            <th>Duration</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for course in ai_data.suggested_courses %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td><strong>{{ course.course_name }}</strong></td>
+            <td>{{ course.platform }}</td>
+            <td>{{ course.duration }}</td>
+            <td>
+                <span class="{% if course.free_or_paid == 'Free' %}free-badge{% else %}paid-badge{% endif %}">
+                    {{ course.free_or_paid }}
+                </span>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- ── Next Steps ── -->
+<div class="section-title">🚀 Your 5 Action Steps</div>
+
+{% for step in ai_data.next_steps %}
+<div class="step-item">
+    <div class="step-num">{{ loop.index }}</div>
+    <div>{{ step }}</div>
+</div>
+{% endfor %}
+
+<!-- ── PDF Footer ── -->
+<div class="pdf-footer">
+    Career Compass AI 
+</div>
+
+</body>
+</html>

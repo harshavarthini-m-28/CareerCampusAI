@@ -1,0 +1,547 @@
+{% extends "base.html" %}
+
+{% block title %}Career Compass AI | AI Career Guidance{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <!-- Left -->
+            <div class="col-lg-6">
+
+                <span class="badge bg-primary px-3 py-2 mb-3">
+                    🚀 AI Powered Career Guidance
+                </span>
+
+                <h1 class="display-4 fw-bold mb-3">
+                    Find Your Perfect
+                    <span class="text-primary">
+                        Career Path
+                    </span>
+                    with AI
+                </h1>
+
+                <p class="lead text-muted mb-4">
+                    Career Compass AI helps students discover the right
+                    career path using Google Gemini AI. Get personalized
+                    career recommendations, roadmap, skills, and learning resources.
+                </p>
+
+                <div class="d-flex gap-3 flex-wrap">
+
+                    {% if session.get('user_id') %}
+
+                    <a href="{{ url_for('dashboard') }}"
+                       class="btn btn-primary btn-lg">
+                        <i class="bi bi-speedometer2 me-2"></i>
+                        Dashboard
+                    </a>
+
+                    {% else %}
+
+                    <a href="{{ url_for('register') }}"
+                       class="btn btn-primary btn-lg">
+                        <i class="bi bi-person-plus-fill me-2"></i>
+                        Get Started
+                    </a>
+
+                    <a href="{{ url_for('login') }}"
+                       class="btn btn-outline-primary btn-lg">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>
+                        Login
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+                <div class="mt-4">
+
+                    <span class="me-4">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                        Free
+                    </span>
+
+                    <span class="me-4">
+                        <i class="bi bi-shield-check text-success"></i>
+                        Secure
+                    </span>
+
+                    <span>
+                        <i class="bi bi-stars text-warning"></i>
+                        Gemini AI
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- Right -->
+
+            <div class="col-lg-6 text-center mt-5 mt-lg-0">
+
+                <div class="card border-0 shadow-lg rounded-4">
+
+                    <div class="card-body p-5">
+
+                        <i class="bi bi-compass-fill text-primary"
+                           style="font-size:90px;"></i>
+
+                        <h3 class="fw-bold mt-4">
+                            Career Compass AI
+                        </h3>
+
+                        <p class="text-muted">
+                            Personalized Career Guidance
+                            Powered by Google Gemini AI
+                        </p>
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-4">
+                                <h5 class="text-primary fw-bold">AI</h5>
+                                <small>Analysis</small>
+                            </div>
+
+                            <div class="col-4">
+                                <h5 class="text-success fw-bold">PDF</h5>
+                                <small>Export</small>
+                            </div>
+
+                            <div class="col-4">
+                                <h5 class="text-warning fw-bold">24×7</h5>
+                                <small>Support</small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                Why Choose Career Compass AI?
+            </h2>
+
+            <p class="text-muted">
+                Everything you need to make better career decisions.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+                        <!-- Feature 1 -->
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body text-center p-4">
+
+                        <i class="bi bi-robot text-primary display-4 mb-3"></i>
+
+                        <h4 class="fw-bold">
+                            AI Career Guidance
+                        </h4>
+
+                        <p class="text-muted">
+                            Get personalized career recommendations
+                            based on your education, skills,
+                            interests and career goals using
+                            Google Gemini AI.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body text-center p-4">
+
+                        <i class="bi bi-map text-success display-4 mb-3"></i>
+
+                        <h4 class="fw-bold">
+                            Career Roadmap
+                        </h4>
+
+                        <p class="text-muted">
+                            Receive a complete roadmap including
+                            required skills, certifications,
+                            recommended courses and next steps
+                            to achieve your career goals.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="col-lg-4">
+                <div class="card h-100 border-0 shadow-sm rounded-4">
+                    <div class="card-body text-center p-4">
+
+                        <i class="bi bi-file-earmark-pdf text-danger display-4 mb-3"></i>
+
+                        <h4 class="fw-bold">
+                            PDF Reports
+                        </h4>
+
+                        <p class="text-muted">
+                            Save recommendation history and
+                            download professional PDF reports
+                            whenever you need them.
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                How It Works
+            </h2>
+
+            <p class="text-muted">
+                Get your career roadmap in three easy steps.
+            </p>
+
+        </div>
+
+        <div class="row g-4">
+
+            <!-- Step 1 -->
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <div class="display-5 text-primary mb-3">
+                            <i class="bi bi-person-circle"></i>
+                        </div>
+
+                        <span class="badge bg-primary mb-3">
+                            Step 1
+                        </span>
+
+                        <h4 class="fw-bold">
+                            Create Profile
+                        </h4>
+
+                        <p class="text-muted">
+                            Register your account and
+                            complete your education,
+                            skills and interests.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+                        <!-- Step 2 -->
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <div class="display-5 text-warning mb-3">
+                            <i class="bi bi-stars"></i>
+                        </div>
+
+                        <span class="badge bg-warning text-dark mb-3">
+                            Step 2
+                        </span>
+
+                        <h4 class="fw-bold">
+                            AI Analysis
+                        </h4>
+
+                        <p class="text-muted">
+                            Google Gemini AI analyzes your
+                            profile and recommends the best
+                            career paths based on your
+                            interests and goals.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Step 3 -->
+            <div class="col-lg-4">
+
+                <div class="card border-0 shadow-sm rounded-4 h-100">
+
+                    <div class="card-body text-center p-4">
+
+                        <div class="display-5 text-success mb-3">
+                            <i class="bi bi-file-earmark-check"></i>
+                        </div>
+
+                        <span class="badge bg-success mb-3">
+                            Step 3
+                        </span>
+
+                        <h4 class="fw-bold">
+                            Get Your Roadmap
+                        </h4>
+
+                        <p class="text-muted">
+                            View your personalized career roadmap,
+                            save your recommendations and
+                            download them as a professional PDF.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Technology Section -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="fw-bold">
+                Built With Modern Technologies
+            </h2>
+
+            <p class="text-muted">
+                Industry-standard technologies powering Career Compass AI.
+            </p>
+
+        </div>
+
+        <div class="row g-4 justify-content-center">
+
+            <div class="col-6 col-md-3">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body">
+                        <i class="bi bi-filetype-py text-primary display-5"></i>
+                        <h5 class="mt-3 fw-bold">Python</h5>
+                        <small class="text-muted">Backend</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body">
+                        <i class="bi bi-bootstrap-fill text-primary display-5"></i>
+                        <h5 class="mt-3 fw-bold">Bootstrap 5</h5>
+                        <small class="text-muted">Responsive UI</small>
+                    </div>
+                </div>
+            </div>
+                        <div class="col-6 col-md-3">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body">
+                        <i class="bi bi-database-fill text-success display-5"></i>
+                        <h5 class="mt-3 fw-bold">MySQL</h5>
+                        <small class="text-muted">Database</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3">
+                <div class="card text-center border-0 shadow-sm rounded-4 h-100">
+                    <div class="card-body">
+                        <i class="bi bi-stars text-warning display-5"></i>
+                        <h5 class="mt-3 fw-bold">Gemini AI</h5>
+                        <small class="text-muted">AI Engine</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Highlights -->
+
+        <div class="row mt-5 text-center">
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-primary">AI</h2>
+                <p class="text-muted">Personalized Guidance</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-success">100%</h2>
+                <p class="text-muted">Student Focused</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-warning">PDF</h2>
+                <p class="text-muted">Export Reports</p>
+            </div>
+
+            <div class="col-md-3">
+                <h2 class="fw-bold text-danger">24×7</h2>
+                <p class="text-muted">Always Available</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Call To Action -->
+
+<section class="py-5 bg-primary text-white">
+
+    <div class="container text-center">
+
+        <h2 class="fw-bold mb-3">
+            Ready to Start Your Career Journey?
+        </h2>
+
+        <p class="lead mb-4">
+            Discover your ideal career path with AI-powered recommendations.
+        </p>
+
+        {% if session.get('user_id') %}
+
+        <a href="{{ url_for('dashboard') }}"
+           class="btn btn-light btn-lg px-5">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Go to Dashboard
+        </a>
+
+        {% else %}
+
+        <a href="{{ url_for('register') }}"
+           class="btn btn-light btn-lg px-5 me-2">
+            <i class="bi bi-person-plus me-2"></i>
+            Get Started
+        </a>
+
+        <a href="{{ url_for('login') }}"
+           class="btn btn-outline-light btn-lg px-5">
+            Login
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</section>
+<!-- Footer -->
+
+<footer class="bg-dark text-white py-4">
+
+    <div class="container">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center text-md-start">
+
+                <h5 class="fw-bold mb-1">
+                    <i class="bi bi-compass-fill text-info me-2"></i>
+                    Career Compass AI
+                </h5>
+
+                <small class="text-secondary">
+                    AI Powered Career Guidance Platform for Students
+                </small>
+
+            </div>
+
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+
+                <a href="{{ url_for('home') }}"
+                   class="text-decoration-none text-white me-3">
+                    Home
+                </a>
+
+                <a href="{{ url_for('login') }}"
+                   class="text-decoration-none text-white me-3">
+                    Login
+                </a>
+
+                <a href="{{ url_for('register') }}"
+                   class="text-decoration-none text-white">
+                    Register
+                </a>
+
+            </div>
+
+        </div>
+
+        <hr class="border-secondary my-3">
+
+        <div class="text-center">
+
+            <small class="text-secondary">
+                © 2026 Career Compass AI • Built with Flask, MySQL & Google Gemini AI
+            </small>
+
+        </div>
+
+    </div>
+
+</footer>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.min-vh-75{
+    min-height:75vh;
+}
+
+.card{
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.text-purple{
+    color:#6f42c1;
+}
+</style>
+{% endblock %}

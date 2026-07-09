@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}My History — Career Compass AI{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/history.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+    <!-- ── Page Header ── -->
+    <div class="history-header text-center mb-5">
+        <div class="history-badge">
+            <i class="bi bi-clock-history"></i>
+        </div>
+        <h1 class="fw-bold mt-3">My Career Advice History</h1>
+        <p class="text-muted">
+            All your AI-generated career roadmaps in one place,
+            {{ user_name }}
+        </p>
+
+        <!-- Stats strip -->
+        <div class="stats-strip mt-3">
+            <div class="stat-pill">
+                <i class="bi bi-journals text-primary"></i>
+                <strong>{{ total }}</strong>
+                <span>Roadmap{{ 's' if total != 1 }}</span>
+            </div>
+            {% if profile %}
+            <div class="stat-pill">
+                <i class="bi bi-mortarboard text-success"></i>
+                <span>{{ profile.education_level }} — {{ profile.stream }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- ── Quick Actions ── -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h5 class="mb-0 text-muted">
+            <i class="bi bi-list-ul me-2"></i>
+            {{ total }} Recommendation{{ 's' if total != 1 }}
+        </h5>
+        <a href="{{ url_for('recommend') }}" class="btn btn-primary">
+            <i class="bi bi-stars me-2"></i>Generate New Advice
+        </a>
+    </div>
+
+    <!-- ── Recommendation Cards ── -->
+    {% if recommendations %}
+        {% for rec in recommendations %}
+        <div class="rec-history-card mb-4">
+
+            <!-- Card Header: Serial number + Date + Latest badge -->
+            <div class="rec-card-header">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="rec-serial">{{ loop.index }}</div>
+                    <div>
+                        <div class="fw-bold text-dark">
+                            {{ rec.top_career }}
+                        </div>
+                        <small class="text-muted">
+                            <i class="bi bi-calendar3 me-1"></i>
+                            {{ rec.created_at.strftime('%d %B %Y, %I:%M %p') }}
+                        </small>
+                    </div>
+                </div>
+
+                <!-- Latest badge (only for first card) -->
+                {% if loop.first %}
+                <span class="badge bg-success">
+                    <i class="bi bi-star-fill me-1"></i>Latest
+                </span>
+                {% else %}
+                <span class="badge bg-secondary">
+                    #{{ loop.index }}
+                </span>
+                {% endif %}
+            </div>
+
+            <!-- Card Body: Motivational message -->
+            <div class="rec-card-body">
+                {% if rec.motivational_msg %}
+                <div class="motivational-snippet">
+                    <i class="bi bi-quote text-primary opacity-50 me-1"></i>
+                    {{ rec.motivational_msg }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Card Footer: Action buttons -->
+            <div class="rec-card-footer">
+                <a href="{{ url_for('view_recommendation', rec_id=rec.id) }}"
+                   class="btn btn-primary btn-sm">
+                    <i class="bi bi-eye me-1"></i>View Roadmap
+                </a>
+
+                <a href="{{ url_for('download_pdf', rec_id=rec.id) }}"
+                   class="btn btn-success btn-sm">
+                    <i class="bi bi-file-earmark-pdf me-1"></i>Download PDF
+                </a>
+
+                <!-- Delete uses a form with POST for safety -->
+                <form method="POST"
+                      action="{{ url_for('delete_recommendation', rec_id=rec.id) }}"
+                      class="d-inline"
+                      onsubmit="return confirm('Delete this recommendation? This cannot be undone.')">
+                    <button type="submit" class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-trash me-1"></i>Delete
+                    </button>
+                </form>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    {% else %}
+        <!-- Empty state — no recommendations yet -->
+        <div class="empty-state text-center py-5">
+            <i class="bi bi-inbox display-1 text-muted opacity-50"></i>
+            <h4 class="mt-3 text-muted">No recommendations yet</h4>
+            <p class="text-muted">
+                Generate your first AI career roadmap to see it here.
+            </p>
+            <a href="{{ url_for('recommend') }}" class="btn btn-primary mt-2">
+                <i class="bi bi-stars me-2"></i>Get My First Career Roadmap
+            </a>
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

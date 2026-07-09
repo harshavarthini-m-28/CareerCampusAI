@@ -1,0 +1,84 @@
+/* history.css — Career History Page Styles */
+
+/* ── Page Header ── */
+.history-header { padding: 1rem 0; }
+
+.history-badge {
+    width: 75px; height: 75px;
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+    box-shadow: 0 4px 20px rgba(13,110,253,0.3);
+}
+.history-badge i { font-size: 2rem; color: white; }
+
+/* ── Stats Strip ── */
+.stats-strip {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 1rem;
+}
+.stat-pill {
+    display: flex; align-items: center; gap: 0.4rem;
+    background: #f0f4ff; border-radius: 20px;
+    padding: 0.4rem 1rem; font-size: 0.9rem;
+}
+
+/* ── Recommendation Card ── */
+.rec-history-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.rec-history-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+    transform: translateY(-2px);
+}
+
+/* Card Header */
+.rec-card-header {
+    background: linear-gradient(135deg, #f8f9ff, #f0f4ff);
+    padding: 1.2rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+/* Serial circle */
+.rec-serial {
+    width: 38px; height: 38px; min-width: 38px;
+    background: linear-gradient(135deg, #0d6efd, #6610f2);
+    color: white; border-radius: 50%;
+    display: flex; align-items: center;
+    justify-content: center;
+    font-weight: 700; font-size: 1rem;
+}
+
+/* Card Body */
+.rec-card-body { padding: 1.2rem 1.5rem; }
+
+.motivational-snippet {
+    background: #f8f9fa; border-left: 3px solid #0d6efd;
+    border-radius: 0 8px 8px 0;
+    padding: 0.7rem 1rem;
+    font-style: italic; color: #495057;
+    font-size: 0.95rem;
+}
+
+/* Card Footer */
+.rec-card-footer {
+    padding: 1rem 1.5rem;
+    background: #fafbff;
+    border-top: 1px solid #e9ecef;
+    display: flex; gap: 0.6rem; flex-wrap: wrap;
+}
+
+/* ── Empty State ── */
+.empty-state {
+    background: #f8f9fa; border-radius: 16px;
+    padding: 3rem;
+}
