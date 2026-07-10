@@ -392,7 +392,8 @@ def recommend():
         conn.commit()
         # ── END RATE LIMITING TIMESTAMP UPDATE ────────────────────────────
 
-    except Exception:
+    except Exception as e:
+        app.logger.error(f"DB SAVE ERROR: {str(e)}")
         flash('Error saving recommendation. Please try again.', 'danger')
         cursor.close(); conn.close()
         return redirect(url_for('dashboard'))
