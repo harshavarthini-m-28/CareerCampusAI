@@ -353,6 +353,7 @@ def recommend():
 
     except Exception as e:
         error_msg = str(e)
+        print("FULL GEMINI ERROR:", e)
         if 'API_KEY' in error_msg or 'api_key' in error_msg:
             flash('Gemini API key is invalid. Check your .env file.', 'danger')
         elif 'quota' in error_msg.lower():
