@@ -4,3 +4,4 @@ mysql-connector-python
 google-generativeai
 python-dotenv
 weasyprint
+gunicorn
