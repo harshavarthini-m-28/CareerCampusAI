@@ -28,7 +28,7 @@ bcrypt = Bcrypt(app)
 
 # ── Gemini AI Setup ───────────────────────────────────────────────
 genai.configure(api_key=Config.GEMINI_API_KEY)
-gemini_model = genai.GenerativeModel('gemini-2.0-flash')
+gemini_model = genai.GenerativeModel('gemini-2.5-flash')
 
 
 # ─────────────────────────────────────────────────────────────────
