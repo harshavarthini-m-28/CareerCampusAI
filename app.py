@@ -36,9 +36,9 @@ gemini_model = genai.GenerativeModel('gemini-2.5-flash')
 # ─────────────────────────────────────────────────────────────────
 
 def get_db_connection():
-    """Returns a fresh MySQL connection."""
     return mysql.connector.connect(
         host=Config.DB_HOST,
+        port=Config.DB_PORT,
         user=Config.DB_USER,
         password=Config.DB_PASSWORD,
         database=Config.DB_NAME
