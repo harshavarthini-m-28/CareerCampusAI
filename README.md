@@ -1,10 +1,10 @@
-# 🎯 Career Compass AI
+ Career Compass AI
 
 An AI-powered Career Guidance Web Application that helps students discover suitable career paths based on their education, skills, interests, and career goals. The application uses Google's Gemini AI to generate personalized career recommendations and provides downloadable PDF reports.
 
 ---
 
-# 📌 Project Overview
+ Project Overview
 
 Career Compass AI is a full-stack Flask web application designed to assist students in making informed career decisions.
 
@@ -22,9 +22,9 @@ The project combines Artificial Intelligence, Flask, MySQL, and modern web techn
 
 ---
 
-# ✨ Features
+ Features
 
-## 👤 User Authentication
+ User Authentication
 
 - User Registration
 - Secure Login
@@ -33,8 +33,7 @@ The project combines Artificial Intelligence, Flask, MySQL, and modern web techn
 - Session Management
 
 ---
-
-## 👤 User Profile Management
+ User Profile Management
 
 Users can store:
 
@@ -48,7 +47,7 @@ Profile information can be updated anytime.
 
 ---
 
-## 🤖 AI Career Recommendation
+ AI Career Recommendation
 
 Powered by **Google Gemini AI**
 
@@ -63,7 +62,7 @@ The AI analyzes the student's profile and generates:
 
 ---
 
-## 📚 Recommendation History
+ Recommendation History
 
 Users can:
 
@@ -73,19 +72,19 @@ Users can:
 
 ---
 
-## 📄 PDF Download
+ 📄 PDF Download
 
 Users can download their AI recommendation as a professionally formatted PDF report.
 
 ---
 
-## 🗑 Delete Recommendation
+ 🗑 Delete Recommendation
 
 Users can permanently remove old recommendations from their account.
 
 ---
 
-## ⏱ Rate Limiting
+⏱ Rate Limiting
 
 To prevent excessive API usage,
 
@@ -93,7 +92,7 @@ To prevent excessive API usage,
 
 ---
 
-## ⚠ Error Handling
+⚠ Error Handling
 
 Custom pages included for:
 
@@ -102,42 +101,42 @@ Custom pages included for:
 
 ---
 
-# 🛠 Technology Stack
+ Technology Stack
 
-## Frontend
+Frontend
 
 - HTML5
 - CSS3
 - Jinja2 Templates
 
-## Backend
+ Backend
 
 - Python
 - Flask
 
-## Database
+Database
 
 - MySQL
 
-## AI
+ AI
 
 - Google Gemini API
 
-## Authentication
+Authentication
 
 - Flask-Bcrypt
 
-## PDF Generation
+PDF Generation
 
 - xhtml2pdf
 
-## Environment Variables
+Environment Variables
 
 - python-dotenv
 
 ---
 
-# 📂 Project Structure
+ Project Structure
 
 ```
 CareerCampusAI/
@@ -268,7 +267,7 @@ http://127.0.0.1:5000
 
 ---
 
-# 🔐 Security Features
+ Security Features
 
 - Password Hashing
 - Environment Variables
@@ -279,7 +278,7 @@ http://127.0.0.1:5000
 
 ---
 
-# 📸 Screenshots
+Screenshots
 
 You can add screenshots of:
 
@@ -303,7 +302,7 @@ screenshots/
 
 ---
 
-# 🚀 Future Improvements
+Future Improvements
 
 - Resume Analyzer
 - Career Roadmap Generator
@@ -318,7 +317,7 @@ screenshots/
 
 ---
 
-# 📦 Python Packages Used
+ Python Packages Used
 
 - Flask
 - Flask-Bcrypt
@@ -329,7 +328,7 @@ screenshots/
 
 ---
 
-# 👩‍💻 Author
+ Author
 
 **Harshavarthini M**
 
@@ -339,7 +338,7 @@ Career Compass AI Developer
 
 ---
 
-# 📜 License
+License
 
 This project is developed for educational and learning purposes.
 
@@ -347,14 +346,11 @@ Feel free to use, modify, and improve it for personal or academic use.
 
 ---
 
-# ⭐ Support
+Support
 
 If you found this project useful,
 
-please consider giving it a ⭐ on GitHub.
+please consider giving it a on GitHub.
 
 It motivates further development and improvements.
-
----
-
-## Thank You 
+ 
